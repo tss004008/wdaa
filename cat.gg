@@ -3,9 +3,9 @@ loadstring(game:HttpGet("https://pastefy.app/pDhoQmem/raw"))()
 
 --[[
     scoot ui library
-    made by samet
+    made by LAv
     
-    https://discord.gg/VhvTd5HV8d
+    QQ: 984297530
     ^^ join for custom commissions
 
     example/documentation is at the bottom
@@ -7719,24 +7719,24 @@ end)
 -- =====================================================================
 ;(function()
 local Window    = Library:Window({Logo="77218680285262", FadeTime=0.3})
-local Watermark = Library:Watermark("Cat.gg")
+local Watermark = Library:Watermark("LAv")
 local KeybindList = Library:KeybindList()
 
 do -- Combat page
-    local Page  = Window:Page({Name="Combat", SubPages=true})
-    local Rage  = Page:SubPage({Name="Ragebot",    Columns=2})
-    local Cam   = Page:SubPage({Name="Legit",      Columns=2})
-    local Melee = Page:SubPage({Name="MeleeAura",  Columns=2})
-    local SAPage = Page:SubPage({Name="Silent aim", Columns=2})
+    local Page  = Window:Page({Name="战斗", SubPages=true})
+    local Rage  = Page:SubPage({Name="暴力机器人",    Columns=2})
+    local Cam   = Page:SubPage({Name="自瞄",      Columns=2})
+    local Melee = Page:SubPage({Name="近战光环",  Columns=2})
+    local SAPage = Page:SubPage({Name="静默瞄准", Columns=2})
 
     do -- Silent Aim
-        local s1 = SAPage:Section({Name="Silent Aim", Side=1})
-        s1:Toggle({Name="Enable", Flag="CAT_Enable_1", Callback=function(v) SA.Enabled=v end}):Keybind({Flag="CAT_Enable_1_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_1"] then Library.SetFlags["CAT_Enable_1"](v) end end})
-        s1:Dropdown({Name="Target Part", Flag="CAT_SA_TargetPart",
-            Items={"Random","Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"},
-            Default="Head",
+        local s1 = SAPage:Section({Name="静默瞄准", Side=1})
+        s1:Toggle({Name="启用", Flag="CAT_Enable_1", Callback=function(v) SA.Enabled=v end}):Keybind({Flag="CAT_Enable_1_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_1"] then Library.SetFlags["CAT_Enable_1"](v) end end})
+        s1:Dropdown({Name="瞄准部位", Flag="CAT_SA_TargetPart",
+            Items={"随机","头部","躯干","左臂","右臂","左腿","右腿"},
+            Default="头部",
             Callback=function(v)
-                if v == "Random" then
+                if v == "随机" then
                     SA.IsRandom = true
                     SA.RandomIdx = 1
                     SA.RandomTimer = 0
@@ -7746,92 +7746,92 @@ do -- Combat page
                     SA.TargetPart = v
                 end
             end})
-        s1:Slider({Name="Hit Chance", Flag="CAT_Hit_Chance_2", Min=0, Max=100, Default=100, Callback=function(v) SA.HitChance=v end})
-        s1:Toggle({Name="Wall Check", Flag="CAT_Wall_Check_3", Default=true, Callback=function(v) SA.WallCheck=v end}):Keybind({Flag="CAT_Wall_Check_3_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Wall_Check_3"] then Library.SetFlags["CAT_Wall_Check_3"](v) end end})
+        s1:Slider({Name="命中率", Flag="CAT_Hit_Chance_2", Min=0, Max=100, Default=100, Callback=function(v) SA.HitChance=v end})
+        s1:Toggle({Name="墙壁检测", Flag="CAT_Wall_Check_3", Default=true, Callback=function(v) SA.WallCheck=v end}):Keybind({Flag="CAT_Wall_Check_3_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Wall_Check_3"] then Library.SetFlags["CAT_Wall_Check_3"](v) end end})
 
-        local s2 = SAPage:Section({Name="FOV", Side=2})
-        local fovT = s2:Toggle({Name="Draw FOV", Flag="CAT_Draw_FOV_4", Callback=function(v) SA.FOV_Visible=v end})
+        local s2 = SAPage:Section({Name="视野圈", Side=2})
+        local fovT = s2:Toggle({Name="绘制视野圈", Flag="CAT_Draw_FOV_4", Callback=function(v) SA.FOV_Visible=v end})
         fovT:Keybind({Flag="CAT_Draw_FOV_4_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Draw_FOV_4"] then Library.SetFlags["CAT_Draw_FOV_4"](v) end end})
-        fovT:Colorpicker({Name="Color", Flag="CAT_Color_5", Default=Color3.fromRGB(255,0,0), Callback=function(v) SA.FOV_Color=v end})
-        s2:Dropdown({Name="Position", Flag="CAT_Position_6", Items={"Center","Mouse"}, Default="Center", Callback=function(v) SA.FOV_PositionMode=v end})
-        s2:Slider({Name="Radius", Flag="CAT_Radius_7",   Min=10, Max=600, Default=100, Callback=function(v) SA.FOV_Radius=v end})
-        s2:Slider({Name="Sides", Flag="CAT_Sides_8",    Min=3,  Max=32,  Default=16,  Callback=function(v) SA.FOV_Sides=math.floor(v) end})
-        s2:Toggle({Name="Spin", Flag="CAT_Spin_9",     Default=false, Callback=function(v) SA.FOV_SpinEnabled=v end}):Keybind({Flag="CAT_Spin_9_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Spin_9"] then Library.SetFlags["CAT_Spin_9"](v) end end})
-        s2:Slider({Name="Spin speed", Flag="CAT_Spin_speed_10", Min=0, Max=500, Default=50, Callback=function(v) SA.FOV_SpinSpeed=v end})
+        fovT:Colorpicker({Name="颜色", Flag="CAT_Color_5", Default=Color3.fromRGB(255,0,0), Callback=function(v) SA.FOV_Color=v end})
+        s2:Dropdown({Name="位置", Flag="CAT_Position_6", Items={"中心","鼠标位置"}, Default="中心", Callback=function(v) SA.FOV_PositionMode=v end})
+        s2:Slider({Name="半径", Flag="CAT_Radius_7",   Min=10, Max=600, Default=100, Callback=function(v) SA.FOV_Radius=v end})
+        s2:Slider({Name="边数", Flag="CAT_Sides_8",    Min=3,  Max=32,  Default=16,  Callback=function(v) SA.FOV_Sides=math.floor(v) end})
+        s2:Toggle({Name="旋转", Flag="CAT_Spin_9",     Default=false, Callback=function(v) SA.FOV_SpinEnabled=v end}):Keybind({Flag="CAT_Spin_9_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Spin_9"] then Library.SetFlags["CAT_Spin_9"](v) end end})
+        s2:Slider({Name="旋转速度", Flag="CAT_Spin_speed_10", Min=0, Max=500, Default=50, Callback=function(v) SA.FOV_SpinSpeed=v end})
     end
 
     do -- Camlock
-        local s1 = Cam:Section({Name="Camlock", Side=1})
-        s1:Toggle({Name="Enable", Flag="CAT_Enable_11",          Callback=function(v) CL.Enabled=v end}):Keybind({Flag="CAT_Enable_11_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_11"] then Library.SetFlags["CAT_Enable_11"](v) end end})
-        s1:Toggle({Name="Target only", Flag="CAT_Target_only_12",     Callback=function(v) CL.TargetOnly=v end}):Keybind({Flag="CAT_Target_only_12_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Target_only_12"] then Library.SetFlags["CAT_Target_only_12"](v) end end})
-        s1:Toggle({Name="Auto prediction", Flag="CAT_Auto_prediction_13", Callback=function(v) CL.AutoPrediction=v end}):Keybind({Flag="CAT_Auto_prediction_13_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Auto_prediction_13"] then Library.SetFlags["CAT_Auto_prediction_13"](v) end end})
-        s1:Toggle({Name="Down check", Flag="CAT_Down_check_14",      Callback=function(v) CL.DownCheck=v end}):Keybind({Flag="CAT_Down_check_14_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Down_check_14"] then Library.SetFlags["CAT_Down_check_14"](v) end end})
-        s1:Slider({Name="FOV", Flag="CAT_FOV_15",          Min=10,  Max=800, Default=170, Callback=function(v) CL.FOV=v end})
-        s1:Slider({Name="Power", Flag="CAT_Power_16",        Min=0.1, Max=1,   Default=1,   Decimals=0.1, Callback=function(v) CL.Power=v end})
-        s1:Slider({Name="Shake power", Flag="CAT_Shake_power_17",  Min=0,   Max=1,   Default=0.2, Decimals=0.1, Callback=function(v) CL.Shake=v end})
-        s1:Slider({Name="Switch delay", Flag="CAT_Switch_delay_18", Min=0.1, Max=1,   Default=0.1, Decimals=0.1, Callback=function(v) CL.Delay=v end})
-        local s2 = Cam:Section({Name="Camlock Config", Side=2})
-        s2:Dropdown({Name="Target Parts", Flag="CAT_CL_TargetParts",
-            Items={"Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"},
-            Default={"Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"},
+        local s1 = Cam:Section({Name="摄像机锁定", Side=1})
+        s1:Toggle({Name="启用", Flag="CAT_Enable_11",          Callback=function(v) CL.Enabled=v end}):Keybind({Flag="CAT_Enable_11_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_11"] then Library.SetFlags["CAT_Enable_11"](v) end end})
+        s1:Toggle({Name="仅限目标", Flag="CAT_Target_only_12",     Callback=function(v) CL.TargetOnly=v end}):Keybind({Flag="CAT_Target_only_12_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Target_only_12"] then Library.SetFlags["CAT_Target_only_12"](v) end end})
+        s1:Toggle({Name="自动预判", Flag="CAT_Auto_prediction_13", Callback=function(v) CL.AutoPrediction=v end}):Keybind({Flag="CAT_Auto_prediction_13_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Auto_prediction_13"] then Library.SetFlags["CAT_Auto_prediction_13"](v) end end})
+        s1:Toggle({Name="倒地检测", Flag="CAT_Down_check_14",      Callback=function(v) CL.DownCheck=v end}):Keybind({Flag="CAT_Down_check_14_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Down_check_14"] then Library.SetFlags["CAT_Down_check_14"](v) end end})
+        s1:Slider({Name="视野范围", Flag="CAT_FOV_15",          Min=10,  Max=800, Default=170, Callback=function(v) CL.FOV=v end})
+        s1:Slider({Name="强度", Flag="CAT_Power_16",        Min=0.1, Max=1,   Default=1,   Decimals=0.1, Callback=function(v) CL.Power=v end})
+        s1:Slider({Name="抖动幅度", Flag="CAT_Shake_power_17",  Min=0,   Max=1,   Default=0.2, Decimals=0.1, Callback=function(v) CL.Shake=v end})
+        s1:Slider({Name="切换延迟", Flag="CAT_Switch_delay_18", Min=0.1, Max=1,   Default=0.1, Decimals=0.1, Callback=function(v) CL.Delay=v end})
+        local s2 = Cam:Section({Name="锁定部位配置", Side=2})
+        s2:Dropdown({Name="锁定部位", Flag="CAT_CL_TargetParts",
+            Items={"头部","躯干","左臂","右臂","左腿","右腿"},
+            Default={"头部","躯干","左臂","右臂","左腿","右腿"},
             Multi=true, Callback=function(v) CL.TargetParts=v end})
-        local s3 = Cam:Section({Name="Other", Side=2})
-        s3:Toggle({Name="No Recoil", Flag="CAT_LG_NoRecoil", Default=false, Callback=function(v)
+        local s3 = Cam:Section({Name="其他", Side=2})
+        s3:Toggle({Name="无后坐力", Flag="CAT_LG_NoRecoil", Default=false, Callback=function(v)
             if v then NR_Enable() else NR_Disable() end
         end}):Keybind({Flag="CAT_LG_NoRecoil_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_LG_NoRecoil"] then Library.SetFlags["CAT_LG_NoRecoil"](v) end end})
-        s3:Slider({Name="Recoil", Flag="CAT_LG_RecoilVal", Min=0, Max=1, Default=0, Decimals=0.1, Callback=function(v)
+        s3:Slider({Name="后坐力", Flag="CAT_LG_RecoilVal", Min=0, Max=1, Default=0, Decimals=0.1, Callback=function(v)
             NR.RecoilVal = v
             if NR.Enabled then NR_Apply() end
         end})
     end
 
     do -- Melee Aura
-        local s = Melee:Section({Name="Melee Aura", Side=1})
-        s:Toggle({Name="Enable", Flag="CAT_Enable_19",          Callback=function(v) MA.Enabled=v; if v then StartMeleeLoop() end end}):Keybind({Flag="CAT_Enable_19_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_19"] then Library.SetFlags["CAT_Enable_19"](v) end end})
-        s:Toggle({Name="Target only", Flag="CAT_Target_only_20",     Callback=function(v) MA.TargetOnly=v end}):Keybind({Flag="CAT_Target_only_20_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Target_only_20"] then Library.SetFlags["CAT_Target_only_20"](v) end end})
-        s:Toggle({Name="Down check", Flag="CAT_Down_check_21",      Callback=function(v) MA.DownCheck=v end}):Keybind({Flag="CAT_Down_check_21_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Down_check_21"] then Library.SetFlags["CAT_Down_check_21"](v) end end})
-        s:Slider( {Name="Distance", Flag="CAT_Distance_22",       Min=5, Max=25, Default=20, Callback=function(v) MA.Distance=v end})
-        s:Toggle({Name="Show Animations", Flag="CAT_Show_Animations_23", Default=true, Callback=function(v) MA.ShowAnim=v end}):Keybind({Flag="CAT_Show_Animations_23_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Show_Animations_23"] then Library.SetFlags["CAT_Show_Animations_23"](v) end end})
-        s:Dropdown({Name="Target Part", Flag="CAT_Target_Part_24",   Items={"Random","Head","Torso","Left Arm","Right Arm","Left Leg","Right Leg"}, Default="Random", Callback=function(v) MA.TargetPart=v end})
+        local s = Melee:Section({Name="近战光环", Side=1})
+        s:Toggle({Name="启用", Flag="CAT_Enable_19",          Callback=function(v) MA.Enabled=v; if v then StartMeleeLoop() end end}):Keybind({Flag="CAT_Enable_19_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_19"] then Library.SetFlags["CAT_Enable_19"](v) end end})
+        s:Toggle({Name="仅限目标", Flag="CAT_Target_only_20",     Callback=function(v) MA.TargetOnly=v end}):Keybind({Flag="CAT_Target_only_20_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Target_only_20"] then Library.SetFlags["CAT_Target_only_20"](v) end end})
+        s:Toggle({Name="倒地检测", Flag="CAT_Down_check_21",      Callback=function(v) MA.DownCheck=v end}):Keybind({Flag="CAT_Down_check_21_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Down_check_21"] then Library.SetFlags["CAT_Down_check_21"](v) end end})
+        s:Slider( {Name="距离", Flag="CAT_Distance_22",       Min=5, Max=25, Default=20, Callback=function(v) MA.Distance=v end})
+        s:Toggle({Name="显示动画", Flag="CAT_Show_Animations_23", Default=true, Callback=function(v) MA.ShowAnim=v end}):Keybind({Flag="CAT_Show_Animations_23_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Show_Animations_23"] then Library.SetFlags["CAT_Show_Animations_23"](v) end end})
+        s:Dropdown({Name="瞄准部位", Flag="CAT_Target_Part_24",   Items={"随机","头部","躯干","左臂","右臂","左腿","右腿"}, Default="随机", Callback=function(v) MA.TargetPart=v end})
     end
 
     do -- Ragebot
-        local s1 = Rage:Section({Name="Settings", Side=1})
-        s1:Toggle({Name="Enable", Flag="CAT_Enable_25",       Callback=function(v) RB_State=v end}):Keybind({Flag="CAT_Enable_25_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_25"] then Library.SetFlags["CAT_Enable_25"](v) end end})
-        s1:Toggle({Name="Rapid fire", Flag="CAT_Rapid_fire_26",   Callback=function(v) RF_State=v end}):Keybind({Flag="CAT_Rapid_fire_26_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Rapid_fire_26"] then Library.SetFlags["CAT_Rapid_fire_26"](v) end end})
-        s1:Toggle({Name="Auto Reload", Flag="CAT_Auto_Reload_27",  Callback=function(v) AutoReload=v; if v then AutoReloadSetup() else clearReloadConnections() end end}):Keybind({Flag="CAT_Auto_Reload_27_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Auto_Reload_27"] then Library.SetFlags["CAT_Auto_Reload_27"](v) end end})
-        s1:Toggle({Name="Down Check", Flag="CAT_Down_Check_28",   Callback=function(v) DownCheck=v end}):Keybind({Flag="CAT_Down_Check_28_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Down_Check_28"] then Library.SetFlags["CAT_Down_Check_28"](v) end end})
-      s1:Slider({Name="Max Cache", Flag="CAT_Max_Cache_30",    Min=0.1, Max=25,  Default=0.5,   Decimals=0.01, Callback=function(v) WB.Threshold=v end})
-        s1:Slider({Name="Origin Radius", Flag="CAT_Origin_Radius_31",Min=0.1, Max=20, Default=18.50, Decimals=0.01, Callback=function(v) Origin_Radius=v end})
-        s1:Slider({Name="Origin Scans", Flag="CAT_Origin_Scans_32", Min=1,   Max=50, Default=24,    Callback=function(v) Origin_Scans=math.floor(v) end})
-        s1:Slider({Name="Scan Rate",    Flag="CAT_Scan_Rate",       Min=1,   Max=60, Default=14,    Callback=function(v) ScanRate=math.floor(v) end})
-        s1:Slider({Name="Hit Radius", Flag="CAT_Hit_Radius_33",   Min=0.1, Max=25, Default=23.50, Decimals=0.01, Callback=function(v) Hit_Radius=v end})
-        s1:Slider({Name="Hit Scans", Flag="CAT_Hit_Scans_34",    Min=1,   Max=50, Default=24,    Callback=function(v) Hit_Scans=math.floor(v) end})
-        local s2 = Rage:Section({Name="Target Selection", Side=2})
-        s2:Dropdown({Name="Target Mode", Flag="CAT_Target_Mode_35", Items={"Near","Mouse","Centre","Lock"},         Default="Near", Callback=function(v) TargetMode=v end})
-        s2:Dropdown({Name="Hit Sound", Flag="CAT_Hit_Sound_36",   Items={"None","Skeet","Neverlose","Gamesense"}, Default="None", Callback=function(v) HitSoundSelection=v end})
+        local s1 = Rage:Section({Name="设置", Side=1})
+        s1:Toggle({Name="启用", Flag="CAT_Enable_25",       Callback=function(v) RB_State=v end}):Keybind({Flag="CAT_Enable_25_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_25"] then Library.SetFlags["CAT_Enable_25"](v) end end})
+        s1:Toggle({Name="快速射击", Flag="CAT_Rapid_fire_26",   Callback=function(v) RF_State=v end}):Keybind({Flag="CAT_Rapid_fire_26_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Rapid_fire_26"] then Library.SetFlags["CAT_Rapid_fire_26"](v) end end})
+        s1:Toggle({Name="自动换弹", Flag="CAT_Auto_Reload_27",  Callback=function(v) AutoReload=v; if v then AutoReloadSetup() else clearReloadConnections() end end}):Keybind({Flag="CAT_Auto_Reload_27_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Auto_Reload_27"] then Library.SetFlags["CAT_Auto_Reload_27"](v) end end})
+        s1:Toggle({Name="倒地检测", Flag="CAT_Down_Check_28",   Callback=function(v) DownCheck=v end}):Keybind({Flag="CAT_Down_Check_28_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Down_Check_28"] then Library.SetFlags["CAT_Down_Check_28"](v) end end})
+      s1:Slider({Name="最大缓存", Flag="CAT_Max_Cache_30",    Min=0.1, Max=25,  Default=0.5,   Decimals=0.01, Callback=function(v) WB.Threshold=v end})
+        s1:Slider({Name="起点半径", Flag="CAT_Origin_Radius_31",Min=0.1, Max=20, Default=18.50, Decimals=0.01, Callback=function(v) Origin_Radius=v end})
+        s1:Slider({Name="起点扫描数", Flag="CAT_Origin_Scans_32", Min=1,   Max=50, Default=24,    Callback=function(v) Origin_Scans=math.floor(v) end})
+        s1:Slider({Name="扫描速率",    Flag="CAT_Scan_Rate",       Min=1,   Max=60, Default=14,    Callback=function(v) ScanRate=math.floor(v) end})
+        s1:Slider({Name="命中半径", Flag="CAT_Hit_Radius_33",   Min=0.1, Max=25, Default=23.50, Decimals=0.01, Callback=function(v) Hit_Radius=v end})
+        s1:Slider({Name="命中扫描数", Flag="CAT_Hit_Scans_34",    Min=1,   Max=50, Default=24,    Callback=function(v) Hit_Scans=math.floor(v) end})
+        local s2 = Rage:Section({Name="目标选择", Side=2})
+        s2:Dropdown({Name="目标模式", Flag="CAT_Target_Mode_35", Items={"最近","鼠标指向","屏幕中心","锁定列表"},         Default="最近", Callback=function(v) TargetMode=v end})
+        s2:Dropdown({Name="命中音效", Flag="CAT_Hit_Sound_36",   Items={"无","飞碟音效","永不丢失","游戏感知"}, Default="无", Callback=function(v) HitSoundSelection=v end})
     end
 end
 
 do -- Visuals page
-    local Page  = Window:Page({Name="Visuals", SubPages=true})
-    local Sub   = Page:SubPage({Name="Main", Columns=2})
-    local World = Page:SubPage({Name="World", Columns=2})
+    local Page  = Window:Page({Name="视觉效果", SubPages=true})
+    local Sub   = Page:SubPage({Name="主体", Columns=2})
+    local World = Page:SubPage({Name="世界", Columns=2})
 
     do -- World Visuals subpage
-        local litSec = World:Section({Name="Lighting", Side=1})
-        litSec:Toggle({Name="Lighting Mode", Flag="WV_LightingMode", Default=false, Callback=function(v) WV.LightingModeEnabled=v end}):Keybind({Flag="WV_LightingMode_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_LightingMode"] then Library.SetFlags["WV_LightingMode"](v) end end})
-        litSec:Dropdown({Name="Technology", Flag="WV_Technology", Items={"Compatibility","ShadowMap","Voxel","Future"}, Default="ShadowMap", Callback=function(v) WV.LightingMode=v end})
-        litSec:Toggle({Name="World Time", Flag="WV_WorldTime", Default=false, Callback=function(v) WV.WorldTimeEnabled=v end}):Keybind({Flag="WV_WorldTime_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_WorldTime"] then Library.SetFlags["WV_WorldTime"](v) end end})
-        litSec:Slider({Name="Time", Flag="WV_Time", Min=0, Max=24, Default=12, Decimals=0.1, Callback=function(v) WV.WorldTime=v end})
-        local ambT2 = litSec:Toggle({Name="Custom Ambient", Flag="WV_Ambient", Default=false, Callback=function(v) WV.AmbientEnabled=v end})
+        local litSec = World:Section({Name="光照", Side=1})
+        litSec:Toggle({Name="光照模式", Flag="WV_LightingMode", Default=false, Callback=function(v) WV.LightingModeEnabled=v end}):Keybind({Flag="WV_LightingMode_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_LightingMode"] then Library.SetFlags["WV_LightingMode"](v) end end})
+        litSec:Dropdown({Name="技术", Flag="WV_Technology", Items={"兼容","阴影贴图","体素","未来"}, Default="阴影贴图", Callback=function(v) WV.LightingMode=v end})
+        litSec:Toggle({Name="世界时间", Flag="WV_WorldTime", Default=false, Callback=function(v) WV.WorldTimeEnabled=v end}):Keybind({Flag="WV_WorldTime_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_WorldTime"] then Library.SetFlags["WV_WorldTime"](v) end end})
+        litSec:Slider({Name="时间", Flag="WV_Time", Min=0, Max=24, Default=12, Decimals=0.1, Callback=function(v) WV.WorldTime=v end})
+        local ambT2 = litSec:Toggle({Name="自定义环境光", Flag="WV_Ambient", Default=false, Callback=function(v) WV.AmbientEnabled=v end})
         ambT2:Keybind({Flag="WV_Ambient_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_Ambient"] then Library.SetFlags["WV_Ambient"](v) end end})
-        ambT2:Colorpicker({Name="Indoor", Flag="WV_AmbientColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.AmbientColor=v end})
-        ambT2:Colorpicker({Name="Outdoor", Flag="WV_OutdoorColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.OutdoorAmbientColor=v end})
+        ambT2:Colorpicker({Name="室内", Flag="WV_AmbientColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.AmbientColor=v end})
+        ambT2:Colorpicker({Name="室外", Flag="WV_OutdoorColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.OutdoorAmbientColor=v end})
 
         -- FOV（从原Camera区移来）
-        local camSec2 = World:Section({Name="Camera", Side=1})
-        camSec2:Slider({Name="FOV", Flag="CAT_VS_CamFOV", Min=50, Max=180, Default=70, Callback=function(v)
+        local camSec2 = World:Section({Name="摄像机", Side=1})
+        camSec2:Slider({Name="视野范围", Flag="CAT_VS_CamFOV", Min=50, Max=180, Default=70, Callback=function(v)
             CAM_FOV = math.floor(v)
             Camera.FieldOfView = CAM_FOV
             if not CAM_FOV_Conn then
@@ -7840,52 +7840,52 @@ do -- Visuals page
                 end)
             end
         end})
-        camSec2:Slider({Name="Camera distance", Flag="CAT_VS_CamDist", Min=1, Max=40, Default=10, Callback=function(v)
+        camSec2:Slider({Name="摄像机距离", Flag="CAT_VS_CamDist", Min=1, Max=40, Default=10, Callback=function(v)
             LocalPlayer.CameraMaxZoomDistance = v
             pcall(function() game:GetService("StarterPlayer").CameraMaxZoomDistance = v end)
         end})
 
-        local skySec = World:Section({Name="Sky & Weather", Side=2})
-        skySec:Toggle({Name="Custom Skybox", Flag="WV_Skybox", Default=false, Callback=function(v)
+        local skySec = World:Section({Name="天空与天气", Side=2})
+        skySec:Toggle({Name="自定义天空盒", Flag="WV_Skybox", Default=false, Callback=function(v)
             WV.SkyboxEnabled=v
         end}):Keybind({Flag="WV_Skybox_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_Skybox"] then Library.SetFlags["WV_Skybox"](v) end end})
-        skySec:Dropdown({Name="Skybox Theme", Flag="WV_SkyboxType", Items={"Black Storm","Blue Space","Realistic","Stormy","Pink"}, Default="Black Storm", Callback=function(v) WV.SkyboxType=v end})
-        local wxT = skySec:Toggle({Name="Weather", Flag="WV_Weather", Default=false, Callback=function(v)
+        skySec:Dropdown({Name="天空盒主题", Flag="WV_SkyboxType", Items={"黑色风暴","蓝色空间","写实","暴风雨","粉色"}, Default="黑色风暴", Callback=function(v) WV.SkyboxType=v end})
+        local wxT = skySec:Toggle({Name="天气", Flag="WV_Weather", Default=false, Callback=function(v)
             WV.WeatherEnabled=v
             WV_WeatherPart.Parent = v and Workspace or nil
         end})
         wxT:Keybind({Flag="WV_Weather_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_Weather"] then Library.SetFlags["WV_Weather"](v) end end})
-        wxT:Colorpicker({Name="Color", Flag="WV_WeatherColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.WeatherColor=v; WV_Emitter.Color=ColorSequence.new(v) end})
-        skySec:Dropdown({Name="Weather Type", Flag="WV_WeatherType", Items={"Rain","Snow"}, Default="Rain", Callback=function(v)
+        wxT:Colorpicker({Name="颜色", Flag="WV_WeatherColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.WeatherColor=v; WV_Emitter.Color=ColorSequence.new(v) end})
+        skySec:Dropdown({Name="天气类型", Flag="WV_WeatherType", Items={"下雨","下雪"}, Default="下雨", Callback=function(v)
             WV.WeatherType=v
-            if v=="Rain" then WV_Emitter.Texture="rbxassetid://1822883048"; WV_Emitter.Speed=NumberRange.new(60); WV_Emitter.Size=NumberSequence.new(10)
+            if v=="下雨" then WV_Emitter.Texture="rbxassetid://1822883048"; WV_Emitter.Speed=NumberRange.new(60); WV_Emitter.Size=NumberSequence.new(10)
             else WV_Emitter.Texture="http://www.roblox.com/asset/?id=99851851"; WV_Emitter.Speed=NumberRange.new(30); WV_Emitter.Size=NumberSequence.new(0.35) end
         end})
-        skySec:Slider({Name="Weather Rate", Flag="WV_WeatherRate", Min=100, Max=2000, Default=600, Decimals=1, Callback=function(v) local r=tonumber(v); if r==r then WV_Emitter.Rate=r end end})
+        skySec:Slider({Name="天气速率", Flag="WV_WeatherRate", Min=100, Max=2000, Default=600, Decimals=1, Callback=function(v) local r=tonumber(v); if r==r then WV_Emitter.Rate=r end end})
 
-        local atmoSec = World:Section({Name="Atmosphere", Side=2})
-        local atT = atmoSec:Toggle({Name="Atmosphere", Flag="WV_Atmosphere", Default=false, Callback=function(v) WV.AtmosphereEnabled=v end})
+        local atmoSec = World:Section({Name="大气", Side=2})
+        local atT = atmoSec:Toggle({Name="大气", Flag="WV_Atmosphere", Default=false, Callback=function(v) WV.AtmosphereEnabled=v end})
         atT:Keybind({Flag="WV_Atmosphere_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_Atmosphere"] then Library.SetFlags["WV_Atmosphere"](v) end end})
-        atT:Colorpicker({Name="Color", Flag="WV_AtmoColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.AtmoColor=v end})
-        atT:Colorpicker({Name="Decay", Flag="WV_AtmoDecay", Default=Color3.fromRGB(120,120,120), Callback=function(v) WV.AtmoDecay=v end})
-        atmoSec:Slider({Name="Density", Flag="WV_AtmoDensity", Min=0, Max=1, Default=0.35, Decimals=0.01, Callback=function(v) WV.AtmoDensity=v end})
-        atmoSec:Slider({Name="Haze",    Flag="WV_AtmoHaze",    Min=0, Max=10, Default=1,   Decimals=0.1,  Callback=function(v) WV.AtmoHaze=v end})
-        atmoSec:Slider({Name="Glare",   Flag="WV_AtmoGlare",   Min=0, Max=10, Default=10,  Decimals=0.1,  Callback=function(v) WV.AtmoGlare=v end})
+        atT:Colorpicker({Name="颜色", Flag="WV_AtmoColor", Default=Color3.fromRGB(255,255,255), Callback=function(v) WV.AtmoColor=v end})
+        atT:Colorpicker({Name="衰减", Flag="WV_AtmoDecay", Default=Color3.fromRGB(120,120,120), Callback=function(v) WV.AtmoDecay=v end})
+        atmoSec:Slider({Name="密度", Flag="WV_AtmoDensity", Min=0, Max=1, Default=0.35, Decimals=0.01, Callback=function(v) WV.AtmoDensity=v end})
+        atmoSec:Slider({Name="薄雾",    Flag="WV_AtmoHaze",    Min=0, Max=10, Default=1,   Decimals=0.1,  Callback=function(v) WV.AtmoHaze=v end})
+        atmoSec:Slider({Name="眩光",   Flag="WV_AtmoGlare",   Min=0, Max=10, Default=10,  Decimals=0.1,  Callback=function(v) WV.AtmoGlare=v end})
 
-        local audioSec = World:Section({Name="Audio", Side=2})
-        audioSec:Toggle({Name="Background Noise", Flag="WV_BGSound", Default=false, Callback=function(v)
+        local audioSec = World:Section({Name="音频", Side=2})
+        audioSec:Toggle({Name="背景噪音", Flag="WV_BGSound", Default=false, Callback=function(v)
             if v then WV_BGSound:Play() else WV_BGSound:Stop() end
         end}):Keybind({Flag="WV_BGSound_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["WV_BGSound"] then Library.SetFlags["WV_BGSound"](v) end end})
-        audioSec:Dropdown({Name="Sound Track", Flag="WV_BGTrack", Items={"Windy Winter","Thunderstorm","Light Rain","Night","Day"}, Default="Night", Callback=function(v)
+        audioSec:Dropdown({Name="音轨", Flag="WV_BGTrack", Items={"寒冬大风","雷雨","小雨","夜晚","白天"}, Default="夜晚", Callback=function(v)
             WV_BGSound.SoundId=WV_Sounds[v]
             if WV_BGSound.IsPlaying then WV_BGSound:Stop(); WV_BGSound:Play() end
         end})
-        audioSec:Slider({Name="Volume", Flag="WV_BGVolume", Min=0, Max=100, Default=25, Decimals=1, Callback=function(v) local vol=tonumber(v); if vol==vol then WV_BGSound.Volume=vol/100 end end})
+        audioSec:Slider({Name="音量", Flag="WV_BGVolume", Min=0, Max=100, Default=25, Decimals=1, Callback=function(v) local vol=tonumber(v); if vol==vol then WV_BGSound.Volume=vol/100 end end})
     end
 
     do -- Skin
-        local sec = Sub:Section({Name="Skin", Side=1})
-        local ffbt = sec:Toggle({Name="Forcefield body", Flag="CAT_VS_FFBody", Callback=function(v)
+        local sec = Sub:Section({Name="皮肤", Side=1})
+        local ffbt = sec:Toggle({Name="身体力场皮肤", Flag="CAT_VS_FFBody", Callback=function(v)
             FF_S.BodyEnabled=v
             if v then
                 local char=LocalPlayer.Character
@@ -7894,8 +7894,8 @@ do -- Visuals page
             else RestoreBody() end
         end})
         ffbt:Keybind({Flag="CAT_VS_FFBody_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_VS_FFBody"] then Library.SetFlags["CAT_VS_FFBody"](v) end end})
-        ffbt:Colorpicker({Name="Color", Flag="CAT_Color_37", Default=FF_S.Color, Callback=function(c) FF_S.Color=c; if FF_S.BodyEnabled then ApplyBodyFF() end end})
-        sec:Toggle({Name="Forcefield tool", Flag="CAT_VS_FFTool", Callback=function(v)
+        ffbt:Colorpicker({Name="颜色", Flag="CAT_Color_37", Default=FF_S.Color, Callback=function(c) FF_S.Color=c; if FF_S.BodyEnabled then ApplyBodyFF() end end})
+        sec:Toggle({Name="工具力场皮肤", Flag="CAT_VS_FFTool", Callback=function(v)
             FF_S.ToolEnabled=v
             if v then
                 local char=LocalPlayer.Character; local tool=char and char:FindFirstChildOfClass("Tool")
@@ -7906,19 +7906,19 @@ do -- Visuals page
     end
 
     do -- Bullet Tracer
-        local sec = Sub:Section({Name="Bullet Tracer", Side=1})
-        local t = sec:Toggle({Name="Enable", Flag="CAT_Enable_38", Callback=function(v) TR.Enabled=v end})
+        local sec = Sub:Section({Name="子弹轨迹", Side=1})
+        local t = sec:Toggle({Name="启用", Flag="CAT_Enable_38", Callback=function(v) TR.Enabled=v end})
         t:Keybind({Flag="CAT_Enable_38_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_38"] then Library.SetFlags["CAT_Enable_38"](v) end end})
-        t:Colorpicker({Name="Tracer Color", Flag="CAT_Tracer_Color_39", Default=TR.Color, Callback=function(c,a) TR.Color=c; TR.Alpha=a end})
-        sec:Slider({Name="Size", Flag="CAT_Size_40", Min=0.1, Max=10, Default=1, Decimals=0.1, Callback=function(v) TR.Size=v end})
+        t:Colorpicker({Name="轨迹颜色", Flag="CAT_Tracer_Color_39", Default=TR.Color, Callback=function(c,a) TR.Color=c; TR.Alpha=a end})
+        sec:Slider({Name="大小", Flag="CAT_Size_40", Min=0.1, Max=10, Default=1, Decimals=0.1, Callback=function(v) TR.Size=v end})
     end
 
     do -- Hit Log
-        local sec = Sub:Section({Name="Hit Log", Side=1})
-        sec:Toggle({Name="Enable", Flag="CAT_Enable_41", Callback=function(v) HitLogEnabled=v; if HitLog.Gui then HitLog.Gui.Enabled=v end end}):Keybind({Flag="CAT_Enable_41_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_41"] then Library.SetFlags["CAT_Enable_41"](v) end end})
+        local sec = Sub:Section({Name="命中日志", Side=1})
+        sec:Toggle({Name="启用", Flag="CAT_Enable_41", Callback=function(v) HitLogEnabled=v; if HitLog.Gui then HitLog.Gui.Enabled=v end end}):Keybind({Flag="CAT_Enable_41_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_41"] then Library.SetFlags["CAT_Enable_41"](v) end end})
 
-        local ambSec = Sub:Section({Name="Ambience", Side=1})
-        local ambT = ambSec:Toggle({Name="Ambience", Flag="CAT_VS_Ambience", Default=false, Callback=function(v)
+        local ambSec = Sub:Section({Name="环境光效", Side=1})
+        local ambT = ambSec:Toggle({Name="环境光效", Flag="CAT_VS_Ambience", Default=false, Callback=function(v)
             AMB.Enabled = v
             if not v then
                 local cc = Camera:FindFirstChild("CATColorCorr")
@@ -7926,18 +7926,18 @@ do -- Visuals page
             end
         end})
         ambT:Keybind({Flag="CAT_VS_Ambience_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_VS_Ambience"] then Library.SetFlags["CAT_VS_Ambience"](v) end end})
-        ambT:Colorpicker({Name="Fog color", Flag="CAT_VS_FogColor", Default=Color3.fromRGB(190,220,255), Callback=function(c) AMB.Color=c end})
-        ambSec:Slider({Name="Fog density", Flag="CAT_VS_FogDensity", Min=0, Max=1, Default=0.45, Decimals=0.01, Callback=function(v) AMB.Density=v end})
-        ambSec:Slider({Name="Brightness", Flag="CAT_VS_Brightness", Min=-1, Max=1, Default=0.15, Decimals=0.01, Callback=function(v) AMB.Brightness=v end})
+        ambT:Colorpicker({Name="雾效颜色", Flag="CAT_VS_FogColor", Default=Color3.fromRGB(190,220,255), Callback=function(c) AMB.Color=c end})
+        ambSec:Slider({Name="雾效浓度", Flag="CAT_VS_FogDensity", Min=0, Max=1, Default=0.45, Decimals=0.01, Callback=function(v) AMB.Density=v end})
+        ambSec:Slider({Name="亮度", Flag="CAT_VS_Brightness", Min=-1, Max=1, Default=0.15, Decimals=0.01, Callback=function(v) AMB.Brightness=v end})
     end
 
     do -- ESP
-        local sec = Sub:Section({Name="ESP", Side=2})
-        sec:Toggle({Name="Nametag", Flag="CAT_Nametag_42",  Default=false, Callback=function(v) NametagEnabled=v; if not v then for _,p in pairs(Players:GetPlayers()) do local t=p.Character and p.Character:FindFirstChild("CAT_NameTag"); local l=t and t:FindFirstChild("L"); if l then l.Visible=false; if not DistanceEnabled then t.Enabled=false end end end end end}):Keybind({Flag="CAT_Nametag_42_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Nametag_42"] then Library.SetFlags["CAT_Nametag_42"](v) end end})
-        sec:Toggle({Name="Distance", Flag="CAT_Distance_43", Default=false, Callback=function(v) DistanceEnabled=v; if not v then for _,p in pairs(Players:GetPlayers()) do local t=p.Character and p.Character:FindFirstChild("CAT_NameTag"); local l=t and t:FindFirstChild("DL"); if l then l.Visible=false; if not NametagEnabled then t.Enabled=false end end end end end}):Keybind({Flag="CAT_Distance_43_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Distance_43"] then Library.SetFlags["CAT_Distance_43"](v) end end})
-        sec:Toggle({Name="Health", Flag="CAT_Health_44",   Default=false, Callback=function(v) HealthEnabled=v;  if not v then for _,p in pairs(Players:GetPlayers()) do local t=p.Character and p.Character:FindFirstChild("CAT_NameTag"); local l=t and t:FindFirstChild("HL"); if l then l.Visible=false end end end end}):Keybind({Flag="CAT_Health_44_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Health_44"] then Library.SetFlags["CAT_Health_44"](v) end end})
-        sec:Toggle({Name="Safe Chams", Flag="CAT_Safe_Chams_45", Default=false, Callback=function(v) SafeChamsEnabled = v; if v then StartSafeChams() end end}):Keybind({Flag="CAT_Safe_Chams_45_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Safe_Chams_45"] then Library.SetFlags["CAT_Safe_Chams_45"](v) end end})
-        local ct = sec:Toggle({Name="Chams", Flag="CAT_VS_Chams", Default=false, Callback=function(v)
+        local sec = Sub:Section({Name="透视", Side=2})
+        sec:Toggle({Name="名字标签", Flag="CAT_Nametag_42",  Default=false, Callback=function(v) NametagEnabled=v; if not v then for _,p in pairs(Players:GetPlayers()) do local t=p.Character and p.Character:FindFirstChild("CAT_NameTag"); local l=t and t:FindFirstChild("L"); if l then l.Visible=false; if not DistanceEnabled then t.Enabled=false end end end end end}):Keybind({Flag="CAT_Nametag_42_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Nametag_42"] then Library.SetFlags["CAT_Nametag_42"](v) end end})
+        sec:Toggle({Name="距离显示", Flag="CAT_Distance_43", Default=false, Callback=function(v) DistanceEnabled=v; if not v then for _,p in pairs(Players:GetPlayers()) do local t=p.Character and p.Character:FindFirstChild("CAT_NameTag"); local l=t and t:FindFirstChild("DL"); if l then l.Visible=false; if not NametagEnabled then t.Enabled=false end end end end end}):Keybind({Flag="CAT_Distance_43_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Distance_43"] then Library.SetFlags["CAT_Distance_43"](v) end end})
+        sec:Toggle({Name="生命值显示", Flag="CAT_Health_44",   Default=false, Callback=function(v) HealthEnabled=v;  if not v then for _,p in pairs(Players:GetPlayers()) do local t=p.Character and p.Character:FindFirstChild("CAT_NameTag"); local l=t and t:FindFirstChild("HL"); if l then l.Visible=false end end end end}):Keybind({Flag="CAT_Health_44_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Health_44"] then Library.SetFlags["CAT_Health_44"](v) end end})
+        sec:Toggle({Name="保险箱透视", Flag="CAT_Safe_Chams_45", Default=false, Callback=function(v) SafeChamsEnabled = v; if v then StartSafeChams() end end}):Keybind({Flag="CAT_Safe_Chams_45_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Safe_Chams_45"] then Library.SetFlags["CAT_Safe_Chams_45"](v) end end})
+        local ct = sec:Toggle({Name="模型透视", Flag="CAT_VS_Chams", Default=false, Callback=function(v)
             espSets.enabled=v
             if not v then
                 if BoxESP.Conn.M then BoxESP.Conn.M:Disconnect() end
@@ -7955,27 +7955,27 @@ do -- Visuals page
             end
         end})
         ct:Keybind({Flag="CAT_VS_Chams_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_VS_Chams"] then Library.SetFlags["CAT_VS_Chams"](v) end end})
-        ct:Colorpicker({Name="Outline Color", Flag="CAT_Outline_Color_46", Default=espSets.outCol, Callback=function(c,a) espSets.outCol=c; espSets.outAlpha=a; if espSets.enabled then refreshAllESP() end end})
-        sec:Toggle({Name="Target only", Flag="CAT_Target_only_47", Default=false, Callback=function(v) espSets.targetOnly=v; if espSets.enabled then refreshAllESP() end end}):Keybind({Flag="CAT_Target_only_47_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Target_only_47"] then Library.SetFlags["CAT_Target_only_47"](v) end end})
-        sec:Toggle({Name="Outline", Flag="CAT_Outline_48", Default=true, Callback=function(v) espSets.outline=v end}):Keybind({Flag="CAT_Outline_48_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Outline_48"] then Library.SetFlags["CAT_Outline_48"](v) end end})
-        local it=sec:Toggle({Name="Inline", Flag="CAT_Inline_49", Default=true, Callback=function(v) espSets.inline=v end})
+        ct:Colorpicker({Name="外轮廓颜色", Flag="CAT_Outline_Color_46", Default=espSets.outCol, Callback=function(c,a) espSets.outCol=c; espSets.outAlpha=a; if espSets.enabled then refreshAllESP() end end})
+        sec:Toggle({Name="仅限目标", Flag="CAT_Target_only_47", Default=false, Callback=function(v) espSets.targetOnly=v; if espSets.enabled then refreshAllESP() end end}):Keybind({Flag="CAT_Target_only_47_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Target_only_47"] then Library.SetFlags["CAT_Target_only_47"](v) end end})
+        sec:Toggle({Name="外轮廓", Flag="CAT_Outline_48", Default=true, Callback=function(v) espSets.outline=v end}):Keybind({Flag="CAT_Outline_48_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Outline_48"] then Library.SetFlags["CAT_Outline_48"](v) end end})
+        local it=sec:Toggle({Name="内轮廓", Flag="CAT_Inline_49", Default=true, Callback=function(v) espSets.inline=v end})
         it:Keybind({Flag="CAT_Inline_49_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Inline_49"] then Library.SetFlags["CAT_Inline_49"](v) end end})
-        it:Colorpicker({Name="Inline Color", Flag="CAT_Inline_Color_50", Default=espSets.inCol, Callback=function(c,a) espSets.inCol=c; espSets.inAlpha=a; if espSets.enabled then refreshAllESP() end end})
-        sec:Slider({Name="Outline Size", Flag="CAT_Outline_Size_51", Min=0.01, Max=1,   Default=0.1,  Decimals=0.01, Callback=function(v) espSets.outSize=v end})
-        sec:Slider({Name="Inline Size", Flag="CAT_Inline_Size_52",  Min=0.01, Max=0.5, Default=0.05, Decimals=0.01, Callback=function(v) espSets.inSize=v end})
+        it:Colorpicker({Name="内轮廓颜色", Flag="CAT_Inline_Color_50", Default=espSets.inCol, Callback=function(c,a) espSets.inCol=c; espSets.inAlpha=a; if espSets.enabled then refreshAllESP() end end})
+        sec:Slider({Name="外轮廓大小", Flag="CAT_Outline_Size_51", Min=0.01, Max=1,   Default=0.1,  Decimals=0.01, Callback=function(v) espSets.outSize=v end})
+        sec:Slider({Name="内轮廓大小", Flag="CAT_Inline_Size_52",  Min=0.01, Max=0.5, Default=0.05, Decimals=0.01, Callback=function(v) espSets.inSize=v end})
     end
 end
 
 do -- Player page
-    local Page = Window:Page({Name="Player", SubPages=true})
-    local Sub  = Page:SubPage({Name="Physical", Columns=2})
-    local sec  = Sub:Section({Name="Movement", Side=1})
-    sec:Toggle({Name="WalkSpeed", Flag="CAT_WalkSpeed_53", Callback=function(v) SpeedState=v end}):Keybind({Flag="CAT_WalkSpeed_53_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_WalkSpeed_53"] then Library.SetFlags["CAT_WalkSpeed_53"](v) end end})
-    sec:Slider( {Name="Value", Flag="CAT_Value_54", Min=1, Max=100, Default=33.5, Decimals=0.1, Callback=function(v) SpeedValue=v end})
-    sec:Toggle({Name="JumpPower", Flag="CAT_JumpPower_55", Callback=function(v) JumpState=v end}):Keybind({Flag="CAT_JumpPower_55_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_JumpPower_55"] then Library.SetFlags["CAT_JumpPower_55"](v) end end})
-    sec:Slider( {Name="Value", Flag="CAT_Value_56", Min=1, Max=100, Default=73,   Decimals=0.1, Callback=function(v) JumpValue=v end})
-    sec:Toggle({Name="No fall", Flag="CAT_No_fall_57", Default=false, Callback=function(v) NoFallEnabled=v end}):Keybind({Flag="CAT_No_fall_57_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_No_fall_57"] then Library.SetFlags["CAT_No_fall_57"](v) end end})
-    sec:Toggle({Name="Fly", Flag="CAT_PL_Fly", Callback=function(v)
+    local Page = Window:Page({Name="玩家", SubPages=true})
+    local Sub  = Page:SubPage({Name="物理", Columns=2})
+    local sec  = Sub:Section({Name="移动", Side=1})
+    sec:Toggle({Name="移速修改", Flag="CAT_WalkSpeed_53", Callback=function(v) SpeedState=v end}):Keybind({Flag="CAT_WalkSpeed_53_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_WalkSpeed_53"] then Library.SetFlags["CAT_WalkSpeed_53"](v) end end})
+    sec:Slider( {Name="数值", Flag="CAT_Value_54", Min=1, Max=100, Default=33.5, Decimals=0.1, Callback=function(v) SpeedValue=v end})
+    sec:Toggle({Name="跳跃修改", Flag="CAT_JumpPower_55", Callback=function(v) JumpState=v end}):Keybind({Flag="CAT_JumpPower_55_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_JumpPower_55"] then Library.SetFlags["CAT_JumpPower_55"](v) end end})
+    sec:Slider( {Name="数值", Flag="CAT_Value_56", Min=1, Max=100, Default=73,   Decimals=0.1, Callback=function(v) JumpValue=v end})
+    sec:Toggle({Name="无摔落伤害", Flag="CAT_No_fall_57", Default=false, Callback=function(v) NoFallEnabled=v end}):Keybind({Flag="CAT_No_fall_57_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_No_fall_57"] then Library.SetFlags["CAT_No_fall_57"](v) end end})
+    sec:Toggle({Name="飞行", Flag="CAT_PL_Fly", Callback=function(v)
         FLY.Enabled = v
         if FLY.MobileMode then
             -- 手机模式：和原来一样，有GUI
@@ -7995,11 +7995,11 @@ do -- Player page
             end
         end
     end}):Keybind({Flag="CAT_PL_Fly_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_PL_Fly"] then Library.SetFlags["CAT_PL_Fly"](v) end end})
-    sec:Slider({Name="Fly speed", Flag="CAT_Fly_speed_58", Min=1, Max=100, Default=60, Callback=function(v) FLY.Speed=v end})
-    sec:Toggle({Name="Mobile mode", Flag="CAT_PL_MobileMode", Default=false, Callback=function(v)
+    sec:Slider({Name="飞行速度", Flag="CAT_Fly_speed_58", Min=1, Max=100, Default=60, Callback=function(v) FLY.Speed=v end})
+    sec:Toggle({Name="手机模式", Flag="CAT_PL_MobileMode", Default=false, Callback=function(v)
         FLY.MobileMode = v
     end}):Keybind({Flag="CAT_PL_MobileMode_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_PL_MobileMode"] then Library.SetFlags["CAT_PL_MobileMode"](v) end end})
-    sec:Toggle({Name="Infinite Stamina", Flag="CAT_PL_InfStamina", Default=false, Callback=function(Value)
+    sec:Toggle({Name="无限体力", Flag="CAT_PL_InfStamina", Default=false, Callback=function(Value)
         InfStaminaEnabled=Value
         if InfStaminaConnection then InfStaminaConnection:Disconnect(); InfStaminaConnection=nil end
         if Value then
@@ -8028,10 +8028,10 @@ do -- Player page
 end
 
 do -- Antis page
-    local Page        = Window:Page({Name="Antis", SubPages=false})
-    local AntiHitSec  = Page:Section({Name="Anti hit", Side=1})
+    local Page        = Window:Page({Name="反制", SubPages=false})
+    local AntiHitSec  = Page:Section({Name="反自瞄", Side=1})
 
-    AntiHitSec:Dropdown({Name="Head mode", Flag="CAT_Head_mode_59", Items={"Hide head","Yaw head","Custom"}, Callback=function(v)
+    AntiHitSec:Dropdown({Name="头部模式", Flag="CAT_Head_mode_59", Items={"隐藏头部","偏航头部","自定义"}, Callback=function(v)
         if not v and OriginalNeckC0 then
             local ch = LocalPlayer.Character
             if ch then
@@ -8045,10 +8045,10 @@ do -- Antis page
         HeadYawTime = 0
         HeadMode = v
     end})
-    AntiHitSec:Slider({Name="Custom yaw", Flag="CAT_Custom_yaw_60",     Min=-90, Max=90, Default=30,  Decimals=0.1, Callback=function(v) HeadYaw=v; HeadCustomYaw=v end})
-    AntiHitSec:Slider({Name="Rotation speed", Flag="CAT_Rotation_speed_61", Min=-50,  Max=50,  Default=30,  Decimals=0.1, Callback=function(v) HeadRotSpeed=v end})
+    AntiHitSec:Slider({Name="自定义偏航", Flag="CAT_Custom_yaw_60",     Min=-90, Max=90, Default=30,  Decimals=0.1, Callback=function(v) HeadYaw=v; HeadCustomYaw=v end})
+    AntiHitSec:Slider({Name="旋转速度", Flag="CAT_Rotation_speed_61", Min=-50,  Max=50,  Default=30,  Decimals=0.1, Callback=function(v) HeadRotSpeed=v end})
 
-    AntiHitSec:Dropdown({Name="Hands mod", Flag="CAT_Hands_mod_62", Items={"Hands up","Open hands"}, Callback=function(v) HandsModSelection=v end})
+    AntiHitSec:Dropdown({Name="手部模式", Flag="CAT_Hands_mod_62", Items={"举手","张开手"}, Callback=function(v) HandsModSelection=v end})
 
     AntiHitSec:Toggle({Name="乱飞", Flag="CAT_AN_LuanFei", Callback=function(v)
         LF.Enabled = v
@@ -8060,7 +8060,7 @@ do -- Antis page
     end}):Keybind({Flag="CAT_AN_LuanFei_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_AN_LuanFei"] then Library.SetFlags["CAT_AN_LuanFei"](v) end end})
 
     -- Invisible toggle
-    AntiHitSec:Toggle({Name="Invisible", Flag="CAT_AN_Invisible", Callback=function(v)
+    AntiHitSec:Toggle({Name="隐身", Flag="CAT_AN_Invisible", Callback=function(v)
         Invis_Enabled=v
         if not v then
             if Invis_Track then pcall(function() Invis_Track:Stop() end); Invis_Track=nil end
@@ -8074,48 +8074,48 @@ do -- Antis page
     end}):Keybind({Flag="CAT_AN_Invisible_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_AN_Invisible"] then Library.SetFlags["CAT_AN_Invisible"](v) end end})
 
     do -- Desync
-        local sec=Page:Section({Name="Velocity desync", Side=2})
-        sec:Toggle({Name="Enable", Flag="CAT_Enable_63",    Callback=function(v) DS.Enabled=v end}):Keybind({Flag="CAT_Enable_63_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_63"] then Library.SetFlags["CAT_Enable_63"](v) end end})
-        sec:Toggle({Name="Visualize", Flag="CAT_Visualize_64", Default=true, Callback=function(v) DS.Visualize=v end}):Keybind({Flag="CAT_Visualize_64_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Visualize_64"] then Library.SetFlags["CAT_Visualize_64"](v) end end})
-        sec:Slider({Name="TP Rate", Flag="CAT_TP_Rate_65",  Min=1,  Max=100, Default=60,  Callback=function(v) DS.TPRate=v end})
-        sec:Slider({Name="X Offset", Flag="CAT_X_Offset_66", Min=1,  Max=20,  Default=8.5, Decimals=0.1, Callback=function(v) DS.X=v end})
-        sec:Slider({Name="Y Offset", Flag="CAT_Y_Offset_67", Min=1,  Max=20,  Default=3,   Decimals=0.1, Callback=function(v) DS.Y=v end})
-        sec:Slider({Name="Z Offset", Flag="CAT_Z_Offset_68", Min=1,  Max=20,  Default=8.5, Decimals=0.1, Callback=function(v) DS.Z=v end})
+        local sec=Page:Section({Name="速度偏移", Side=2})
+        sec:Toggle({Name="启用", Flag="CAT_Enable_63",    Callback=function(v) DS.Enabled=v end}):Keybind({Flag="CAT_Enable_63_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Enable_63"] then Library.SetFlags["CAT_Enable_63"](v) end end})
+        sec:Toggle({Name="可视化", Flag="CAT_Visualize_64", Default=true, Callback=function(v) DS.Visualize=v end}):Keybind({Flag="CAT_Visualize_64_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Visualize_64"] then Library.SetFlags["CAT_Visualize_64"](v) end end})
+        sec:Slider({Name="传送速率", Flag="CAT_TP_Rate_65",  Min=1,  Max=100, Default=60,  Callback=function(v) DS.TPRate=v end})
+        sec:Slider({Name="X偏移", Flag="CAT_X_Offset_66", Min=1,  Max=20,  Default=8.5, Decimals=0.1, Callback=function(v) DS.X=v end})
+        sec:Slider({Name="Y偏移", Flag="CAT_Y_Offset_67", Min=1,  Max=20,  Default=3,   Decimals=0.1, Callback=function(v) DS.Y=v end})
+        sec:Slider({Name="Z偏移", Flag="CAT_Z_Offset_68", Min=1,  Max=20,  Default=8.5, Decimals=0.1, Callback=function(v) DS.Z=v end})
     end
 end
 
 do -- Misc page
-    local Page = Window:Page({Name="Misc", SubPages=false})
+    local Page = Window:Page({Name="杂项", SubPages=false})
     
-    local sL   = Page:Section({Name="Shiftlock", Side=1})
-    sL:Toggle({Name="Anti auto shiftlock", Flag="CAT_Anti_auto_shiftlock_69", Callback=function(v) MC.AntiShift=v end}):Keybind({Flag="CAT_Anti_auto_shiftlock_69_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Anti_auto_shiftlock_69"] then Library.SetFlags["CAT_Anti_auto_shiftlock_69"](v) end end})
-    sL:Slider( {Name="Delay", Flag="CAT_Delay_70", Min=0.01, Max=0.50, Default=0.05, Decimals=0.01, Callback=function(v) MC.ShiftDelay=v end})
+    local sL   = Page:Section({Name="Shift锁", Side=1})
+    sL:Toggle({Name="反自动Shift锁", Flag="CAT_Anti_auto_shiftlock_69", Callback=function(v) MC.AntiShift=v end}):Keybind({Flag="CAT_Anti_auto_shiftlock_69_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Anti_auto_shiftlock_69"] then Library.SetFlags["CAT_Anti_auto_shiftlock_69"](v) end end})
+    sL:Slider( {Name="延迟", Flag="CAT_Delay_70", Min=0.01, Max=0.50, Default=0.05, Decimals=0.01, Callback=function(v) MC.ShiftDelay=v end})
     
-    local sFarm = Page:Section({Name="Farm", Side=1})
-    sFarm:Toggle({Name="Auto pick up money", Flag="CAT_MC_AutoPickup", Callback=function(v) 
+    local sFarm = Page:Section({Name="农场", Side=1})
+    sFarm:Toggle({Name="自动拾取金钱", Flag="CAT_MC_AutoPickup", Callback=function(v) 
         SC.APM_Enabled = v 
         if v then StartAutoPickUpMoney() end
     end}):Keybind({Flag="CAT_MC_AutoPickup_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_MC_AutoPickup"] then Library.SetFlags["CAT_MC_AutoPickup"](v) end end})
-    sFarm:Toggle({Name="Auto unlock safe", Flag="CAT_MC_AutoUnlock", Callback=function(v)
+    sFarm:Toggle({Name="自动开锁", Flag="CAT_MC_AutoUnlock", Callback=function(v)
         SC.AUS_Enabled = v
         if v then StartAutoUnlockSafe() end
     end}):Keybind({Flag="CAT_MC_AutoUnlock_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_MC_AutoUnlock"] then Library.SetFlags["CAT_MC_AutoUnlock"](v) end end})
 
-    local sR = Page:Section({Name="Camera", Side=2})
-    sR:Toggle({Name="Smooth Camera", Flag="CAT_Smooth_Camera_71", Callback=function(v) MC.SmoothCam=v; if not v then MC.SmoothPos=nil end end}):Keybind({Flag="CAT_Smooth_Camera_71_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Smooth_Camera_71"] then Library.SetFlags["CAT_Smooth_Camera_71"](v) end end})
-    sR:Slider( {Name="Speed", Flag="CAT_Speed_72", Min=1, Max=10, Default=6, Callback=function(v) MC.LerpSpeed=v end})
+    local sR = Page:Section({Name="摄像机", Side=2})
+    sR:Toggle({Name="平滑摄像机", Flag="CAT_Smooth_Camera_71", Callback=function(v) MC.SmoothCam=v; if not v then MC.SmoothPos=nil end end}):Keybind({Flag="CAT_Smooth_Camera_71_KB", Mode="Toggle", Callback=function(v) if Library and Library.SetFlags and Library.SetFlags["CAT_Smooth_Camera_71"] then Library.SetFlags["CAT_Smooth_Camera_71"](v) end end})
+    sR:Slider( {Name="速度", Flag="CAT_Speed_72", Min=1, Max=10, Default=6, Callback=function(v) MC.LerpSpeed=v end})
 end
 
 do -- PlayerList page
-    local Page = Window:Page({Name="PlayerList", SubPages=false})
-    local pL   = Page:Section({Name="Target List", Side=1})
-    PL_TargetSearch = pL:Searchbox({Name="Targets", Items=GetAllPlayerNames(), Multi=true,
+    local Page = Window:Page({Name="玩家列表", SubPages=false})
+    local pL   = Page:Section({Name="目标列表", Side=1})
+    PL_TargetSearch = pL:Searchbox({Name="目标", Items=GetAllPlayerNames(), Multi=true,
         Callback=function(v) TargetList=(typeof(v)=="table" and v or {v}); if espSets.enabled and espSets.targetOnly then refreshAllESP() end end})
-    pL:Button({Name="Clear Targets", Callback=function() TargetList={}; pcall(function() PL_TargetSearch:Set({}) end); if espSets.enabled and espSets.targetOnly then refreshAllESP() end end})
-    local pR = Page:Section({Name="Whitelist", Side=2})
-    PL_WhiteSearch = pR:Searchbox({Name="Whitelist", Items=GetAllPlayerNames(), Multi=true,
+    pL:Button({Name="清除目标", Callback=function() TargetList={}; pcall(function() PL_TargetSearch:Set({}) end); if espSets.enabled and espSets.targetOnly then refreshAllESP() end end})
+    local pR = Page:Section({Name="白名单", Side=2})
+    PL_WhiteSearch = pR:Searchbox({Name="白名单", Items=GetAllPlayerNames(), Multi=true,
         Callback=function(v) WhiteList=(typeof(v)=="table" and v or {v}) end})
-    pR:Button({Name="Clear Whitelist", Callback=function() WhiteList={}; pcall(function() PL_WhiteSearch:Set({}) end) end})
+    pR:Button({Name="清除白名单", Callback=function() WhiteList={}; pcall(function() PL_WhiteSearch:Set({}) end) end})
 end
 
 Library:CreateSettingsPage(Window, Watermark, KeybindList)
