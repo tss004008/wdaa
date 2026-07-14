@@ -1,0 +1,297 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+
+local Translations = {
+    ["Enable"] = "启用",
+    ["Disable"] = "禁用",
+    ["Enabled"] = "已启用",
+    ["Disabled"] = "已禁用",
+    ["Settings"] = "设置",
+    ["Config"] = "配置",
+    ["Configs"] = "配置",
+    ["Save"] = "保存",
+    ["Load"] = "加载",
+    ["Delete"] = "删除",
+    ["Create"] = "创建",
+    ["Reset"] = "重置",
+    ["Clear"] = "清除",
+    ["Copy"] = "复制",
+    ["Paste"] = "粘贴",
+    ["Color"] = "颜色",
+    ["Size"] = "大小",
+    ["Speed"] = "速度",
+    ["Value"] = "数值",
+    ["Default"] = "默认",
+    ["None"] = "无",
+    ["Random"] = "随机",
+    ["Target"] = "目标",
+    ["Targets"] = "目标列表",
+    ["Whitelist"] = "白名单",
+    ["FOV"] = "视野范围",
+    ["Distance"] = "距离",
+    ["Health"] = "生命值",
+    ["Damage"] = "伤害",
+    ["Power"] = "强度",
+    ["Delay"] = "延迟",
+    ["Rate"] = "速率",
+    ["Radius"] = "半径",
+    ["Sides"] = "边数",
+    ["Spin"] = "旋转",
+    ["Toggle"] = "切换",
+    ["Hold"] = "按住",
+    ["Always"] = "始终",
+    ["Keybind"] = "快捷键",
+    ["Menu"] = "菜单",
+    ["Watermark"] = "水印",
+    ["Keybinds"] = "快捷键列表",
+    ["Theme"] = "主题",
+    ["Theming"] = "主题定制",
+    ["Search"] = "搜索",
+    ["Loading"] = "加载中",
+    ["Success"] = "成功",
+    ["Error"] = "错误",
+    ["Combat"] = "战斗",
+    ["Silent Aim"] = "静默瞄准",
+    ["Ragebot"] = "暴力机器人",
+    ["Legit"] = "自瞄",
+    ["MeleeAura"] = "近战光环",
+    ["Hit Chance"] = "命中率",
+    ["Wall Check"] = "墙壁检测",
+    ["Target Part"] = "瞄准部位",
+    ["Head"] = "头部",
+    ["Torso"] = "躯干",
+    ["Left Arm"] = "左臂",
+    ["Right Arm"] = "右臂",
+    ["Left Leg"] = "左腿",
+    ["Right Leg"] = "右腿",
+    ["Draw FOV"] = "绘制视野圈",
+    ["Position"] = "位置",
+    ["Center"] = "中心",
+    ["Mouse"] = "鼠标位置",
+    ["Spin speed"] = "旋转速度",
+    ["Camlock"] = "摄像机锁定",
+    ["Target only"] = "仅限目标",
+    ["Auto prediction"] = "自动预判",
+    ["Down check"] = "倒地检测",
+    ["Shake power"] = "抖动幅度",
+    ["Switch delay"] = "切换延迟",
+    ["Target Parts"] = "锁定部位",
+    ["No Recoil"] = "无后坐力",
+    ["Recoil"] = "后坐力",
+    ["Melee Aura"] = "近战光环",
+    ["Show Animations"] = "显示动画",
+    ["Rapid fire"] = "快速射击",
+    ["Auto Reload"] = "自动换弹",
+    ["Max Cache"] = "最大缓存",
+    ["Origin Radius"] = "起点半径",
+    ["Origin Scans"] = "起点扫描数",
+    ["Scan Rate"] = "扫描速率",
+    ["Hit Radius"] = "命中半径",
+    ["Hit Scans"] = "命中扫描数",
+    ["Target Mode"] = "目标模式",
+    ["Near"] = "最近",
+    ["Centre"] = "屏幕中心",
+    ["Lock"] = "锁定列表",
+    ["Hit Sound"] = "命中音效",
+    ["Skeet"] = "飞碟音效",
+    ["Neverlose"] = "永不丢失",
+    ["Gamesense"] = "游戏感知",
+    ["Visuals"] = "视觉效果",
+    ["Main"] = "主体",
+    ["World"] = "世界",
+    ["Skin"] = "皮肤",
+    ["Forcefield body"] = "身体力场皮肤",
+    ["Forcefield tool"] = "工具力场皮肤",
+    ["Bullet Tracer"] = "子弹轨迹",
+    ["Tracer Color"] = "轨迹颜色",
+    ["Hit Log"] = "命中日志",
+    ["Ambience"] = "环境光效",
+    ["Fog color"] = "雾效颜色",
+    ["Fog density"] = "雾效浓度",
+    ["Brightness"] = "亮度",
+    ["ESP"] = "透视",
+    ["Nametag"] = "名字标签",
+    ["Distance"] = "距离显示",
+    ["Health"] = "生命值显示",
+    ["Safe Chams"] = "保险箱透视",
+    ["Chams"] = "模型透视",
+    ["Outline"] = "外轮廓",
+    ["Inline"] = "内轮廓",
+    ["Outline Color"] = "外轮廓颜色",
+    ["Inline Color"] = "内轮廓颜色",
+    ["Outline Size"] = "外轮廓大小",
+    ["Inline Size"] = "内轮廓大小",
+    ["Lighting"] = "光照",
+    ["Lighting Mode"] = "光照模式",
+    ["Technology"] = "技术",
+    ["Compatibility"] = "兼容",
+    ["ShadowMap"] = "阴影贴图",
+    ["Voxel"] = "体素",
+    ["Future"] = "未来",
+    ["World Time"] = "世界时间",
+    ["Time"] = "时间",
+    ["Custom Ambient"] = "自定义环境光",
+    ["Indoor"] = "室内",
+    ["Outdoor"] = "室外",
+    ["Camera"] = "摄像机",
+    ["Camera distance"] = "摄像机距离",
+    ["Sky & Weather"] = "天空与天气",
+    ["Custom Skybox"] = "自定义天空盒",
+    ["Skybox Theme"] = "天空盒主题",
+    ["Black Storm"] = "黑色风暴",
+    ["Blue Space"] = "蓝色空间",
+    ["Realistic"] = "写实",
+    ["Stormy"] = "暴风雨",
+    ["Pink"] = "粉色",
+    ["Weather"] = "天气",
+    ["Weather Type"] = "天气类型",
+    ["Rain"] = "下雨",
+    ["Snow"] = "下雪",
+    ["Weather Rate"] = "天气速率",
+    ["Atmosphere"] = "大气",
+    ["Decay"] = "衰减",
+    ["Density"] = "密度",
+    ["Haze"] = "薄雾",
+    ["Glare"] = "眩光",
+    ["Audio"] = "音频",
+    ["Background Noise"] = "背景噪音",
+    ["Sound Track"] = "音轨",
+    ["Windy Winter"] = "寒冬大风",
+    ["Thunderstorm"] = "雷雨",
+    ["Light Rain"] = "小雨",
+    ["Night"] = "夜晚",
+    ["Day"] = "白天",
+    ["Volume"] = "音量",
+    ["Player"] = "玩家",
+    ["Physical"] = "物理",
+    ["Movement"] = "移动",
+    ["WalkSpeed"] = "移速修改",
+    ["JumpPower"] = "跳跃修改",
+    ["No fall"] = "无摔落伤害",
+    ["Fly"] = "飞行",
+    ["Fly speed"] = "飞行速度",
+    ["Mobile mode"] = "手机模式",
+    ["Infinite Stamina"] = "无限体力",
+    ["Antis"] = "反制",
+    ["Anti hit"] = "反自瞄",
+    ["Head mode"] = "头部模式",
+    ["Hide head"] = "隐藏头部",
+    ["Yaw head"] = "偏航头部",
+    ["Custom"] = "自定义",
+    ["Custom yaw"] = "自定义偏航",
+    ["Rotation speed"] = "旋转速度",
+    ["Hands mod"] = "手部模式",
+    ["Hands up"] = "举手",
+    ["Open hands"] = "张开手",
+    ["乱飞"] = "乱飞",
+    ["Invisible"] = "隐身",
+    ["Velocity desync"] = "速度偏移",
+    ["Visualize"] = "可视化",
+    ["TP Rate"] = "传送速率",
+    ["X Offset"] = "X偏移",
+    ["Y Offset"] = "Y偏移",
+    ["Z Offset"] = "Z偏移",
+    ["Misc"] = "杂项",
+    ["Shiftlock"] = "Shift锁",
+    ["Anti auto shiftlock"] = "反自动Shift锁",
+    ["Farm"] = "农场",
+    ["Auto pick up money"] = "自动拾取金钱",
+    ["Auto unlock safe"] = "自动开锁",
+    ["Smooth Camera"] = "平滑摄像机",
+    ["PlayerList"] = "玩家列表",
+    ["Target List"] = "目标列表",
+    ["Clear Targets"] = "清除目标",
+    ["Clear Whitelist"] = "清除白名单",
+    ["Fade time"] = "淡入淡出时间",
+    ["Tween time"] = "过渡时间",
+    ["DPI"] = "界面缩放",
+    ["Tween style"] = "过渡样式",
+    ["Linear"] = "线性",
+    ["Quad"] = "二次",
+    ["Quart"] = "四次",
+    ["Back"] = "回弹",
+    ["Bounce"] = "弹跳",
+    ["Circular"] = "圆周",
+    ["Cubic"] = "三次",
+    ["Elastic"] = "弹性",
+    ["Exponential"] = "指数",
+    ["Sine"] = "正弦",
+    ["Quint"] = "五次",
+    ["Tween direction"] = "过渡方向",
+    ["In"] = "进入",
+    ["Out"] = "退出",
+    ["InOut"] = "进出",
+    ["Unload"] = "卸载",
+    ["UI Keybind"] = "界面快捷键",
+    ["Menu keybind"] = "菜单快捷键",
+    ["Keybind list"] = "快捷键列表",
+}
+
+local function TranslateText(text)
+    if not text or text == "" then return text end
+    if Translations[text] then
+        return Translations[text]
+    end
+    for eng, chn in pairs(Translations) do
+        if text:find(eng, 1, true) then
+            return text:gsub(eng, chn, 1)
+        end
+    end
+    return text
+end
+
+local function TranslateUI(container)
+    if not container then return end
+    local descendants = container:GetDescendants()
+    for _, obj in ipairs(descendants) do
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+            local original = obj.Text
+            if original and original ~= "" then
+                local translated = TranslateText(original)
+                if translated ~= original then
+                    obj.Text = translated
+                end
+            end
+        end
+        if obj:IsA("TextBox") then
+            local original = obj.PlaceholderText
+            if original and original ~= "" then
+                local translated = TranslateText(original)
+                if translated ~= original then
+                    obj.PlaceholderText = translated
+                end
+            end
+        end
+    end
+end
+
+print("[翻译脚本] 正在等待界面加载...")
+task.wait(3)
+
+local success, result = pcall(function()
+    local coreGui = game:GetService("CoreGui")
+    for _, gui in ipairs(coreGui:GetChildren()) do
+        if gui:IsA("ScreenGui") then
+            TranslateUI(gui)
+        end
+    end
+    print("[翻译脚本] 翻译完成！")
+end)
+
+if not success then
+    warn("[翻译脚本] 翻译失败: " .. tostring(result))
+end
+
+local function SetupMonitor()
+    local coreGui = game:GetService("CoreGui")
+    coreGui.ChildAdded:Connect(function(child)
+        if child:IsA("ScreenGui") then
+            task.wait(0.5)
+            TranslateUI(child)
+        end
+    end)
+end
+
+SetupMonitor()
+print("[翻译脚本] 已启动UI监控，新界面将自动翻译")
